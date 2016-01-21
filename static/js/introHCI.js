@@ -15,6 +15,7 @@ function initializePage() {
 		$(".jumbotron p").toggleClass("active");
 	});
 
+	$(".img").hide();
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
 	$("a.thumbnail").click(projectClick);
@@ -50,13 +51,17 @@ function projectClick(e) { 
     e.preventDefault();
 
     // In an event listener, $(this) is the leement that fired the event
-    var projectTitle = $(this).find("p").text();
-    var jumbotronHeader = $(".jumbotron h1");
+	var projectTitle    = $(this).find("p").text();
+	var jumbotronHeader = $(".jumbotron h1");
     jumbotronHeader.text(projectTitle);
 
 
 	var containingProject = $(this).closest(".project");
-	var description = $(containingProject).find(".project-description");
+	var description       = $(containingProject).find(".project-description");
+	var image             = $(containingProject).find(".img");
+
+	$(image).toggle();
+
 	if (description.length == 0) 
 	{
 		$(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
@@ -65,5 +70,6 @@ function projectClick(e) { 
 	{
 		//description.html("<p>Stop clicking on me! You just did it at " + (new Date()) + "</p>");
 		$(description).toggle();
+		
 	}
 }
